@@ -19,7 +19,7 @@ P.S. This project was originally intended for connecting VRChat OSC Trackers, bu
 
 ### Usage
 
-1. Download an APK from [Releases](https://github.com/Ramaifs/ByeByeDPI-Exclude-IPs-Private/releases). For Meta Quest 3S, choose `arm64-v8a`.
+1. Download an APK from [Releases](https://github.com/Ramaifs/ByeByeDPI-Exclude-IPs-Private/releases). For Meta Quest, choose `arm64-v8a`.
 2. In VPN mode, open **Settings → IP Exceptions**. Add an address or choose a preset.
 3. Disconnect and reconnect the VPN. Exceptions apply on Android 13 (API 33) or later. For IPv6 exceptions, enable IPv6 in the VPN settings.
 
