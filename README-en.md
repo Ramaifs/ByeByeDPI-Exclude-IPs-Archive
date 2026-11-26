@@ -5,7 +5,10 @@
   <p><a href="https://github.com/Ramaifs/ByeByeDPI-Exclude-IPs-Private/releases">Releases</a> | <a href="LICENSE">License</a></p>
 </div>
 
-An Android app based on [ByeByeDPI 1.8.2](https://github.com/romanvht/ByeByeDPI) that adds IP exceptions. Traffic to selected addresses and subnets can go directly to its destination, bypassing the ByeByeDPI VPN tunnel.
+An Android app based on [ByeByeDPI 1.8.2](https://github.com/romanvht/ByeByeDPI) that adds IP exceptions.
+Traffic to selected addresses and subnets can go directly to its destination, bypassing the ByeByeDPI VPN tunnel.
+
+P.S. This project was originally intended for connecting VRChat OSC Trackers, but it can also be used for other purposes.
 
 ### Features
 
@@ -24,12 +27,10 @@ An Android app based on [ByeByeDPI 1.8.2](https://github.com/romanvht/ByeByeDPI)
 
 Both entries are enabled on first launch to preserve the previous setup for VRChat and OSC trackers.
 
-* **Local Network** — `192.168.0.0/24`. Allows direct access to devices on this subnet, such as a computer or tracker at `192.168.0.149`. Edit the entry if your network uses a different subnet.
-* **mDNS Discovery** — `224.0.0.251/32`. This is the IPv4 multicast address used by mDNS to discover devices and services on the local network. The entry excludes only this destination address.
+* **Local Network** - `192.168.0.0/24`. Allows direct access to devices on this subnet, such as a computer or tracker at `192.168.0.149`. Edit the entry if your network uses a different subnet.
+* **mDNS Discovery** - `224.0.0.251/32`. This is the IPv4 multicast address used by mDNS to discover devices and services on the local network. The entry excludes only this destination address.
 
 Both entries can be disabled, edited, or deleted.
-
-This build passed unit tests. The new interface and routing have yet to be tested on a Meta Quest 3S.
 
 ### Building
 
