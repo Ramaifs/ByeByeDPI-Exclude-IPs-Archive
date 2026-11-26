@@ -27,7 +27,7 @@ P.S. This project was originally intended for connecting VRChat OSC Trackers, bu
 
 Both entries are enabled on first launch to preserve the previous setup for VRChat and OSC trackers.
 
-* **Local Network** - `192.168.0.0/24`. Allows direct access to devices on this subnet, such as a computer or tracker at `192.168.0.149`. Edit the entry if your network uses a different subnet.
+* **Local Network** - `192.168.0.0/24`. Allows direct access to devices on this subnet, such as a computer or tracker. Edit the entry if your network uses a different subnet.
 * **mDNS Discovery** - `224.0.0.251/32`. This is the IPv4 multicast address used by mDNS to discover devices and services on the local network. The entry excludes only this destination address.
 
 Both entries can be disabled, edited, or deleted.
