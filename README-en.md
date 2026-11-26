@@ -1,70 +1,47 @@
 <div align="center">
-  <p>
-    <img src="https://github.com/romanvht/ByeDPIAndroid/raw/master/.github/images/app.svg" alt="Логотип ByeDPI" width="200" />
-  </p>
-  <h1>ByeByeDPI Android</h1>
-  <p>
-    <a href="README.md">Русский</a> |
-    English |
-    <a href="README-tr.md">Türkçe</a>
-  </p>
-  <p>
-    <a href="https://github.com/romanvht/ByeByeDPI/releases/latest"><img src="https://img.shields.io/github/v/release/romanvht/ByeByeDPI" alt="Latest Release" /></a>
-    <a href="https://github.com/romanvht/ByeByeDPI/releases"><img src="https://img.shields.io/github/downloads/romanvht/ByeByeDPI/total" alt="Downloads" /></a>
-    <a href="https://github.com/romanvht/ByeByeDPI/blob/master/LICENSE"><img src="https://img.shields.io/github/license/romanvht/ByeByeDPI" alt="License" /></a>
-    <a href="https://github.com/romanvht/ByeByeDPI"><img src="https://img.shields.io/github/languages/code-size/romanvht/ByeByeDPI" alt="GitHub code size in bytes"/></a>
-  </p>
+  <p><img src=".github/images/app.svg" alt="ByeDPI" width="200" /></p>
+  <h1>ByeByeDPI — IP Exceptions</h1>
+  <p><a href="README.md">Русский</a> | English</p>
+  <p><a href="https://github.com/Ramaifs/ByeByeDPI-Exclude-IPs-Private/releases">Releases</a> | <a href="LICENSE">License</a></p>
 </div>
 
-An Android application that runs ByeDPI locally and redirects all traffic through it.
-
-For stable operation, you may need to adjust the settings. More information about the available options can be found in the [ByeDPI documentation](https://github.com/hufrea/byedpi/blob/main/README.md).
-
-This application is not a VPN. It uses Android’s VPN mode to redirect traffic, but it does not send any data to a remote server. It does not encrypt your traffic or hide your IP address.
-
-The application has only one official website:
-https://byebyedpi.xyz
-
----
+An Android app based on [ByeByeDPI 1.8.2](https://github.com/romanvht/ByeByeDPI) that adds IP exceptions. Traffic to selected addresses and subnets can go directly to its destination, bypassing the ByeByeDPI VPN tunnel.
 
 ### Features
 
-* Automatically starts the service when the device boots
-* Saves command-line parameter lists
-* Improved compatibility with Android TV/BOX devices
-* Per-app split tunneling
-* Settings import and export
+* Exceptions for IPv4, IPv6, and CIDR subnets.
+* A global switch and a separate switch for each entry.
+* Presets for VRChat OSC Trackers, private networks, mDNS, SSDP, and local IPv6.
+* Exceptions are saved and included in settings import and export.
 
 ### Usage
 
-* Enable the corresponding option in the settings to use automatic startup.
-* It is recommended to connect to the VPN once in order to accept the permission request.
-* After that, the application will automatically start the service when the device boots, depending on the selected mode: VPN or Proxy.
-* Comprehensive community guide: [ByeByeDPI-Manual](https://byebyedpi.xyz)
+1. Download an APK from [Releases](https://github.com/Ramaifs/ByeByeDPI-Exclude-IPs-Private/releases). For Meta Quest 3S, choose `arm64-v8a`.
+2. In VPN mode, open **Settings → IP Exceptions**. Add an address or choose a preset.
+3. Disconnect and reconnect the VPN. Exceptions apply on Android 13 (API 33) or later. For IPv6 exceptions, enable IPv6 in the VPN settings.
+
+### Default exceptions
+
+Both entries are enabled on first launch to preserve the previous setup for VRChat and OSC trackers.
+
+* **Local Network** — `192.168.0.0/24`. Allows direct access to devices on this subnet, such as a computer or tracker at `192.168.0.149`. Edit the entry if your network uses a different subnet.
+* **mDNS Discovery** — `224.0.0.251/32`. This is the IPv4 multicast address used by mDNS to discover devices and services on the local network. The entry excludes only this destination address.
+
+Both entries can be disabled, edited, or deleted.
+
+This build passed unit tests. The new interface and routing have yet to be tested on a Meta Quest 3S.
 
 ### Building
 
-1. Clone the repository with its submodules:
+Build on Linux or WSL with JDK 21 and Android SDK 36.
 
 ```bash
-git clone --recurse-submodules
+git clone --recurse-submodules https://github.com/Ramaifs/ByeByeDPI-Exclude-IPs-Private.git
+cd ByeByeDPI-Exclude-IPs-Private
+./gradlew testDebugUnitTest assembleDebug
 ```
 
-2. Run the build script from the repository root:
-
-```bash
-./gradlew assembleRelease
-```
-
-3. The APK will be located in:
-   `app/build/outputs/apk/release/`
-
-> Note: hev_socks5_tunnel cannot be built on Windows. You will need to use WSL.
-
-### Signing Certificate Hash
-
-SHA-256:
-`77:45:10:75:AC:EA:40:64:06:47:5D:74:D4:59:88:3A:49:A6:40:51:FA:F3:2E:42:F7:18:F3:F9:77:7A:8D:FB`
+The APKs are written to `app/build/outputs/apk/debug/`.
 
 ### Dependencies
 

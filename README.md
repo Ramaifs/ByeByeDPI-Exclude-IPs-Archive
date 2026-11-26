@@ -1,60 +1,47 @@
 <div align="center">
-  <p>
-    <img src="https://github.com/romanvht/ByeDPIAndroid/raw/master/.github/images/app.svg" alt="Логотип ByeDPI" width="200" />
-  </p>
-  <h1>ByeByeDPI Android</h1>
-  <p>
-    Русский |
-    <a href="README-en.md">English</a> |
-    <a href="README-tr.md">Türkçe</a>
-  </p>
-  <p>
-    <a href="https://github.com/romanvht/ByeByeDPI/releases/latest"><img src="https://img.shields.io/github/v/release/romanvht/ByeByeDPI" alt="Latest Release" /></a>
-    <a href="https://github.com/romanvht/ByeByeDPI/releases"><img src="https://img.shields.io/github/downloads/romanvht/ByeByeDPI/total" alt="Downloads" /></a>
-    <a href="https://github.com/romanvht/ByeByeDPI/blob/master/LICENSE"><img src="https://img.shields.io/github/license/romanvht/ByeByeDPI" alt="License" /></a>
-    <a href="https://github.com/romanvht/ByeByeDPI"><img src="https://img.shields.io/github/languages/code-size/romanvht/ByeByeDPI" alt="GitHub code size in bytes"/></a>
-  </p>
+  <p><img src=".github/images/app.svg" alt="ByeDPI" width="200" /></p>
+  <h1>ByeByeDPI — IP Exceptions</h1>
+  <p>Русский | <a href="README-en.md">English</a></p>
+  <p><a href="https://github.com/Ramaifs/ByeByeDPI-Exclude-IPs-Private/releases">Releases</a> | <a href="LICENSE">License</a></p>
 </div>
 
-Приложение для Android, которое локально запускает ByeDPI и перенаправляет весь трафик через него.
-
-Для стабильной работы может потребоваться изменить настройки. Подробнее о различных настройках можно прочитать в [документации ByeDPI](https://github.com/hufrea/byedpi/blob/main/README.md).
-
-Приложение не является VPN. Оно использует VPN-режим на Android для перенаправления трафика, но не передает ничего на удаленный сервер. Оно не шифрует трафик и не скрывает ваш IP-адрес.
-
-У приложения есть единственный официальный сайт -> https://byebyedpi.xyz
-
----
+Android-приложение на базе [ByeByeDPI 1.8.2](https://github.com/romanvht/ByeByeDPI), которое добавляет исключения по IP-адресам. Трафик к выбранным адресам и подсетям может идти напрямую, минуя VPN-туннель ByeByeDPI.
 
 ### Возможности
-* Автозапуск сервиса при старте устройства
-* Сохранение списков параметров командной строки
-* Улучшена совместимость с Android TV/BOX
-* Раздельное туннелирование приложений
-* Импорт/экспорт настроек
+
+* Исключения для IPv4, IPv6 и подсетей CIDR.
+* Общий переключатель и отдельный переключатель для каждой записи.
+* Пресеты для VRChat OSC Trackers, частных сетей, mDNS, SSDP и локального IPv6.
+* Сохранение исключений и перенос через импорт и экспорт настроек.
 
 ### Использование
-* Для работы автозапуска активируйте пункт в настройках.
-* Рекомендуется подключится один раз к VPN, чтобы принять запрос.
-* После этого, при загрузке устройства, приложение автоматически запустит сервис в зависимости от настроек (VPN/Proxy)
-* Комплексная инструкция от комьюнити [ByeByeDPI-Manual](https://byebyedpi.xyz)
+
+1. Скачайте APK в [Releases](https://github.com/Ramaifs/ByeByeDPI-Exclude-IPs-Private/releases). Для Meta Quest 3S выберите `arm64-v8a`.
+2. В режиме VPN откройте **Настройки → Исключения IP-адресов**. Добавьте адрес или выберите пресет.
+3. Отключите и снова подключите VPN. Исключения применяются с Android 13 (API 33). Для исключений IPv6 включите IPv6 в настройках VPN.
+
+### Начальные исключения
+
+Обе записи включены при первом запуске, чтобы сохранить прежнюю конфигурацию для VRChat и OSC-трекеров.
+
+* **Local Network** — `192.168.0.0/24`. Позволяет обращаться напрямую к устройствам в этой подсети, например к компьютеру или трекеру с адресом `192.168.0.149`. Если у вашей сети другая подсеть, измените адрес записи.
+* **mDNS Discovery** — `224.0.0.251/32`. Это multicast-адрес IPv4 для обнаружения устройств и сервисов в локальной сети через mDNS. Запись исключает только этот адрес назначения.
+
+Обе записи можно отключить, изменить или удалить.
+
+У этой сборки прошли модульные тесты. Работа нового интерфейса и маршрутизации на Meta Quest 3S пока не проверена.
 
 ### Сборка
-1. Клонируйте репозиторий с сабмодулями:
-```bash
-git clone --recurse-submodules
-```
-2. Запустите скрипт сборки из корня репозитория:
-```bash
-./gradlew assembleRelease
-```
-3. APK будет в `app/build/outputs/apk/release/`
 
-> P.S.: hev_socks5_tunnel не соберется под Windows, вам нужно будет использовать WSL
+Для сборки используйте Linux или WSL, JDK 21 и Android SDK 36.
 
-### Хеш подписи
-SHA-256:
-`77:45:10:75:AC:EA:40:64:06:47:5D:74:D4:59:88:3A:49:A6:40:51:FA:F3:2E:42:F7:18:F3:F9:77:7A:8D:FB`
+```bash
+git clone --recurse-submodules https://github.com/Ramaifs/ByeByeDPI-Exclude-IPs-Private.git
+cd ByeByeDPI-Exclude-IPs-Private
+./gradlew testDebugUnitTest assembleDebug
+```
+
+Готовые APK появятся в `app/build/outputs/apk/debug/`.
 
 ### Зависимости
 - [ByeDPI](https://github.com/hufrea/byedpi)
