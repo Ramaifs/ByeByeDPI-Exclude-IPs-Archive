@@ -57,6 +57,12 @@
             android:title="@string/ipv6_setting"
             android:defaultValue="false" />
 
+        <Preference
+            android:key="ip_exceptions"
+            android:icon="@drawable/ic_network"
+            android:title="@string/ip_exceptions_title"
+            app:fragment="io.github.romanvht.byedpi.fragments.IpExceptionsFragment" />
+
         <ListPreference
             android:key="applist_type"
             android:icon="@drawable/ic_filter_list"

@@ -1,0 +1,28 @@
+<resources>
+    <string name="ip_exceptions_title">IP Exceptions</string>
+    <string name="ip_exceptions_enabled">Use IP exceptions</string>
+    <string name="ip_exceptions_restart">Disconnect and reconnect the ByeByeDPI VPN to apply changes.</string>
+    <string name="ip_exceptions_unsupported">You can edit exceptions, but applying them requires Android 13 (API 33) or later.</string>
+    <string name="ip_exceptions_ipv6_notice">IPv6 exceptions apply when IPv6 is enabled in VPN settings.</string>
+    <string name="ip_exceptions_add">Add exception</string>
+    <string name="ip_exceptions_edit">Edit exception</string>
+    <string name="ip_exceptions_entries">Saved exceptions</string>
+    <string name="ip_exceptions_presets">Add preset</string>
+    <string name="ip_exceptions_name">Name</string>
+    <string name="ip_exceptions_address">IP address or CIDR</string>
+    <string name="ip_exceptions_entry_enabled">Exception enabled</string>
+    <string name="ip_exceptions_entry_summary">%1$s · %2$s</string>
+    <string name="ip_exceptions_on">Enabled</string>
+    <string name="ip_exceptions_off">Disabled</string>
+    <string name="ip_exceptions_save">Save</string>
+    <string name="ip_exceptions_delete">Delete</string>
+    <string name="ip_exceptions_name_required">Enter a name.</string>
+    <string name="ip_exceptions_invalid">Enter an IPv4 or IPv6 address, or a CIDR with a nonzero prefix length.</string>
+    <string name="ip_exceptions_duplicate">This address or network is already on the list.</string>
+    <string name="ip_exceptions_preset_exists">All routes in this preset are already on the list.</string>
+    <string name="ip_exceptions_vrchat">VRChat OSC Trackers</string>
+    <string name="ip_exceptions_private">Private Networks</string>
+    <string name="ip_exceptions_mdns">mDNS Discovery</string>
+    <string name="ip_exceptions_ssdp">SSDP Discovery</string>
+    <string name="ip_exceptions_local_ipv6">Local IPv6</string>
+</resources>

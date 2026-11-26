@@ -6,6 +6,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Intent
 import android.content.pm.ServiceInfo
+import android.net.IpPrefix
 import android.net.VpnService
 import android.os.Build
 import android.os.IBinder
@@ -114,6 +115,16 @@ class ByeDpiVpnService : VpnService() {
         if (configuration.ipv6) {
             builder.addAddress("fd00::1", 128)
                 .addRoute("::", 0)
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            for (cidr in configuration.excludedRoutes) {
+                val network = IpNetwork.parse(cidr) ?: continue
+                if (network.isIpv6 && !configuration.ipv6) continue
+                builder.excludeRoute(IpPrefix(network.address, network.prefixLength))
+            }
+        } else if (configuration.excludedRoutes.isNotEmpty()) {
+            Log.w(TAG, "IP exceptions require Android API 33+")
         }
 
         if (configuration.dns.isNotBlank()) {

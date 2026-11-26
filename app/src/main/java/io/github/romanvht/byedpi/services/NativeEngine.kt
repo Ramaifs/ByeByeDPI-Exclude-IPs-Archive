@@ -43,7 +43,7 @@ internal class NativeEngine(
     companion object {
         private const val TAG = "NativeEngine"
 
-        fun configuration(context: Context): Configuration {
+        fun configuration(context: Context, mode: Mode): Configuration {
             val preferences = context.getPreferences()
             val proxy = ByeDpiProxyPreferences.fromSharedPreferences(preferences, context)
             val args = when (proxy) {
@@ -52,11 +52,15 @@ internal class NativeEngine(
             }
             val (defaultHost, defaultPort) = preferences.getProxyIpAndPort()
             val (host, port) = args.toList().checkIpAndPortInArgs()
+            val ipv6 = preferences.getBoolean("ipv6_enable", false)
             return Configuration(
                 args.toList(), host ?: defaultHost, (port ?: defaultPort).toInt(),
                 dns = if (PrivateDnsUtils.getState(context) is PrivateDnsState.Configured) ""
                     else preferences.getStringNotNull("dns_ip", "1.1.1.1"),
-                ipv6 = preferences.getBoolean("ipv6_enable", false),
+                ipv6 = ipv6,
+                excludedRoutes = if (mode == Mode.VPN) {
+                    preferences.readIpExceptions().activeRoutes(ipv6)
+                } else emptyList(),
                 appListType = preferences.getStringNotNull("applist_type", "disable"),
                 apps = preferences.getSelectedApps(),
             )
@@ -212,6 +216,7 @@ internal class NativeEngine(
                 putBoolean(EngineProtocol.IPV6, configuration.ipv6)
                 putString(EngineProtocol.APP_LIST_TYPE, configuration.appListType)
                 putStringArray(EngineProtocol.APPS, configuration.apps.toTypedArray())
+                putStringArray(EngineProtocol.EXCLUDED_ROUTES, configuration.excludedRoutes.toTypedArray())
             })
         }
         awaitStarted()

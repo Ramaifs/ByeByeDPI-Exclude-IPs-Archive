@@ -133,6 +133,7 @@ class MainSettingsFragment : PreferenceFragmentCompat() {
         cmdSettings.isEnabled = cmdEnable
         proxyTest.isEnabled = cmdEnable
 
+        findPreferenceNotNull<Preference>("ip_exceptions").isVisible = mode == Mode.VPN
         dns.summary = dnsSummary()
         dnsEdit.isVisible = false
         privateDns.summary = (privateDnsState as? PrivateDnsState.Configured)?.hostname

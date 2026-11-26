@@ -184,6 +184,7 @@ internal class NativeSession(
             data.getBoolean(EngineProtocol.IPV6),
             data.getString(EngineProtocol.APP_LIST_TYPE) ?: "disable",
             data.getStringArray(EngineProtocol.APPS)?.toList().orEmpty(),
+            excludedRoutes = data.getStringArray(EngineProtocol.EXCLUDED_ROUTES)?.toList().orEmpty(),
         )
         state = EngineProtocol.STATE_STARTING
         reply(EngineProtocol.CONFIGURED)

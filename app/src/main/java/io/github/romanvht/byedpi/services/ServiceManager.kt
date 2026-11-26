@@ -186,7 +186,7 @@ object ServiceManager {
     private fun configure(current: Session, app: Application) {
         if (current.configuration.isCompleted || current.started.isCompleted) return
         try {
-            current.configuration.complete(NativeEngine.configuration(app))
+            current.configuration.complete(NativeEngine.configuration(app, current.mode))
         } catch (e: Exception) {
             current.configuration.completeExceptionally(e)
         }

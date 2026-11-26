@@ -13,6 +13,7 @@ import com.google.gson.Gson
 import io.github.romanvht.byedpi.BuildConfig
 import io.github.romanvht.byedpi.R
 import io.github.romanvht.byedpi.data.AppSettings
+import io.github.romanvht.byedpi.data.IpExceptionSettings
 import java.io.File
 
 object SettingsUtils {
@@ -130,7 +131,9 @@ object SettingsUtils {
                 null
             },
             settings = if (Section.SETTINGS in sections) {
-                prefs.all.filterKeys { it !in separatePreferenceKeys }
+                val ipExceptions = prefs.readIpExceptions().encode()
+                prefs.all.filterKeys { it !in separatePreferenceKeys } +
+                    (IpExceptionSettings.KEY to ipExceptions)
             } else {
                 null
             }
@@ -175,13 +178,17 @@ object SettingsUtils {
             val prefs = context.getPreferences()
 
             if (Section.SETTINGS in sections && import.settings != null) {
+                val key = IpExceptionSettings.KEY
+                val ipExceptions = if (key in import.settings) {
+                    IpExceptionSettings.decode(import.settings[key] as String).encode()
+                } else null
                 prefs.edit(commit = true) {
                     prefs.all.keys
-                        .filter { it !in separatePreferenceKeys }
+                        .filter { it !in separatePreferenceKeys && it != key }
                         .forEach { remove(it) }
 
                     import.settings
-                        .filterKeys { it !in separatePreferenceKeys }
+                        .filterKeys { it !in separatePreferenceKeys && it != key }
                         .forEach { (key, value) ->
                             when (value) {
                                 is Int -> putInt(key, value)
@@ -210,6 +217,7 @@ object SettingsUtils {
                                 }
                             }
                         }
+                    if (ipExceptions != null) putString(key, ipExceptions)
                 }
             }
 
@@ -262,7 +270,7 @@ object SettingsUtils {
             val prefs = context.getPreferences()
 
             prefs.edit(commit = true) {
-                clear()
+                prefs.all.keys.filter { it != IpExceptionSettings.KEY }.forEach { remove(it) }
             }
 
             HistoryUtils(context).saveHistory(emptyList())

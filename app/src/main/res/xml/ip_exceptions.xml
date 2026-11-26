@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/ip_exceptions_title">
+
+    <Preference
+        android:key="ip_exceptions_notice"
+        android:selectable="false"
+        android:summary="@string/ip_exceptions_restart" />
+
+    <Preference
+        android:key="ip_exceptions_ipv6_notice"
+        android:selectable="false"
+        android:summary="@string/ip_exceptions_ipv6_notice" />
+
+    <SwitchPreference
+        android:key="ip_exceptions_enabled"
+        android:persistent="false"
+        android:title="@string/ip_exceptions_enabled" />
+
+    <Preference
+        android:key="ip_exceptions_add"
+        android:title="@string/ip_exceptions_add" />
+
+    <Preference
+        android:key="ip_exceptions_presets"
+        android:title="@string/ip_exceptions_presets" />
+
+    <PreferenceCategory
+        android:key="ip_exceptions_entries"
+        android:title="@string/ip_exceptions_entries" />
+
+</PreferenceScreen>

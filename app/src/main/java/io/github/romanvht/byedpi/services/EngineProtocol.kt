@@ -26,6 +26,7 @@ internal object EngineProtocol {
     const val IPV6 = "ipv6"
     const val APP_LIST_TYPE = "app_list_type"
     const val APPS = "apps"
+    const val EXCLUDED_ROUTES = "excluded_routes"
     const val PID = "pid"
     const val STATE = "state"
     const val ERROR = "error"

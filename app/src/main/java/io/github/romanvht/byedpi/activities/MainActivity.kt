@@ -144,6 +144,7 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getPreferences().readIpExceptions()
         ServiceManager.refresh(this)
 
         binding = ActivityMainBinding.inflate(layoutInflater)

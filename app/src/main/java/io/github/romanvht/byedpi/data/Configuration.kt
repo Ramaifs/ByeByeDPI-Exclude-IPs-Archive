@@ -8,4 +8,5 @@ data class Configuration(
     val ipv6: Boolean = false,
     val appListType: String = "disable",
     val apps: List<String> = emptyList(),
+    val excludedRoutes: List<String> = emptyList(),
 )
