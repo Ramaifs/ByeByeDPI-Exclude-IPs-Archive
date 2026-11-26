@@ -1,0 +1,30 @@
+<!-- This feature is localized in Russian and English. Other locales use the app's default. -->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation">
+    <string name="ip_exceptions_title">Исключения IP-адресов</string>
+    <string name="ip_exceptions_enabled">Использовать исключения</string>
+    <string name="ip_exceptions_restart">Чтобы применить изменения, отключите и снова подключите VPN ByeByeDPI.</string>
+    <string name="ip_exceptions_unsupported">Исключения можно редактировать, но они применяются только на Android 13 (API 33) и новее.</string>
+    <string name="ip_exceptions_ipv6_notice">Исключения IPv6 применяются при включённом IPv6 в настройках VPN.</string>
+    <string name="ip_exceptions_add">Добавить исключение</string>
+    <string name="ip_exceptions_edit">Редактировать исключение</string>
+    <string name="ip_exceptions_entries">Сохранённые исключения</string>
+    <string name="ip_exceptions_presets">Добавить пресет</string>
+    <string name="ip_exceptions_name">Название</string>
+    <string name="ip_exceptions_address">IP-адрес или CIDR</string>
+    <string name="ip_exceptions_entry_enabled">Исключение включено</string>
+    <string name="ip_exceptions_entry_summary">%1$s · %2$s</string>
+    <string name="ip_exceptions_on">Включено</string>
+    <string name="ip_exceptions_off">Выключено</string>
+    <string name="ip_exceptions_save">Сохранить</string>
+    <string name="ip_exceptions_delete">Удалить</string>
+    <string name="ip_exceptions_name_required">Введите название.</string>
+    <string name="ip_exceptions_invalid">Введите IPv4, IPv6 или CIDR с ненулевым префиксом.</string>
+    <string name="ip_exceptions_duplicate">Такой адрес или подсеть уже есть в списке.</string>
+    <string name="ip_exceptions_preset_exists">Все маршруты пресета уже есть в списке.</string>
+    <string name="ip_exceptions_vrchat">VRChat OSC Trackers</string>
+    <string name="ip_exceptions_private">Частные сети</string>
+    <string name="ip_exceptions_mdns">Обнаружение mDNS</string>
+    <string name="ip_exceptions_ssdp">Обнаружение SSDP</string>
+    <string name="ip_exceptions_local_ipv6">Локальный IPv6</string>
+</resources>
