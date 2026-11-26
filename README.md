@@ -5,7 +5,8 @@
   <p><a href="https://github.com/Ramaifs/ByeByeDPI-Exclude-IPs-Private/releases">Releases</a> | <a href="LICENSE">License</a></p>
 </div>
 
-Android-приложение на базе [ByeByeDPI 1.8.2](https://github.com/romanvht/ByeByeDPI), которое добавляет исключения по IP-адресам. 
+Android-приложение на базе [ByeByeDPI 1.8.2](https://github.com/romanvht/ByeByeDPI), которое добавляет исключения по IP-адресам.
+
 Трафик к выбранным адресам и подсетям может идти напрямую, минуя VPN-туннель ByeByeDPI.
 
 P.S: Изначально репозиторий рассматривается для подключения VRChat OSC Trackers, но вполне может использоваться для других целей
