@@ -20,7 +20,7 @@ P.S: Изначально репозиторий рассматривается 
 
 ### Использование
 
-1. Скачайте APK в [Releases](https://github.com/Ramaifs/ByeByeDPI-Exclude-IPs-Private/releases). Для Meta Quest выберите `arm64-v8a`.
+1. Скачайте APK в [Releases](https://github.com/Ramaifs/ByeByeDPI-Exclude-IPs-Private/releases). (Для Meta Quest выберите `arm64-v8a`)
 2. В режиме VPN откройте **Настройки → Исключения IP-адресов**. Добавьте адрес или выберите пресет.
 3. Отключите и снова подключите VPN. Исключения применяются с Android 13 (API 33). Для исключений IPv6 включите IPv6 в настройках VPN.
 
